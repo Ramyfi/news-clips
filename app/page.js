@@ -1,6 +1,8 @@
 "use client";
 
-import { Box, styled } from "@mui/material";
+// This component is where the content of the news articles is rendered. Natasha Machado
+
+import { Box, styled } from "@mui/material"; //Using material-ui to build cards, boxes, containers in UI
 import {
   Card,
   CardContent,
@@ -8,9 +10,12 @@ import {
   Grid,
   CircularProgress,
 } from "@mui/material";
+
 import { useState, useEffect } from "react";
 
-const Container = styled(Box)(({ theme }) => ({
+//Using Styled Components to overrride the material UI components wherever necessary.
+
+const Container = styled(Box)(({ theme }) => ({  
   width: "80%",
   margin: "110px auto 0 auto",
   [theme.breakpoints.down("md")]: {
@@ -102,33 +107,34 @@ const LoadingArticles = styled(Typography)`
   font-family: "sans-serif";
 `;
 
-export async function getSummary() {
+export async function getSummary() { // To fetch the modified response with summarized articles in json() format
   const response = await fetch("http://127.0.0.1:5328/api/summary");
   const data = await response.json();
   return data;
 }
 
 export default function Home() {
-  const [articleData, setArticleData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
+  const [articleData, setArticleData] = useState(null); //to set and update articles
+  const [isLoading, setLoading] = useState(true); //for rendering loading icon when data is still being fetched
 
-  useEffect(() => {
+  useEffect(() => { // executes the functions on page load
     setTimeout(async () => {
-      const data = await getSummary();
-      setArticleData(data);
-      setLoading(false);
+      const data = await getSummary();  // calling the summarization function
+      setArticleData(data); //updating the fetched data
+      setLoading(false); //removing loading icon once data is available
     }, 1000);
   }, []);
 
-  if (isLoading)
+  if (isLoading) 
     return (
-      <LoadingArticles>
+      <LoadingArticles>  
         <Loading color="inherit" />
         Loading...
       </LoadingArticles>
     );
   if (!articleData) return <p>Article Not Available</p>;
 
+  //  Displaying article details in a sequential grid format
   return (
     <Box>
       <Container>
