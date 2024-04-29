@@ -33,17 +33,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The Flask server will be running on http://127.0.0.1:5328 – feel free to change the port in package.json (you'll also need to update it in next.config.js).
 
-## Learn More
+## Deploying on Vercel
 
-To learn more about Next.js and Flask and Python AI tool integration, take a look at the following resources:
+Finally, we deployed the app on Versel platform.
 
+[NewsClips](https://news-clips.vercel.app/) - Check it out! 
+
+<img width="1280" alt="image" src="https://github.com/Ramyfi/news-clips/assets/156487372/9724bf6c-a383-4da8-83f5-738a8da0df47">
+
+
+## References
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 - [Nextjs Flask](https://vercel.com/templates/next.js/nextjs-flask-starter) - learn about nextjs, flask template
 - [Sumy AI](https://github.com/miso-belica/sumy/blob/main/README.md) - Python AI Summarization tool
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

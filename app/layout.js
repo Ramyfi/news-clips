@@ -1,4 +1,5 @@
 import "../globals.css";
+import Image from "next/image";
 
 export const metadata = {
   title: "News-Clips",
@@ -8,7 +9,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <header>
+          <Image
+            className="center"
+            src="/Logo.png"
+            width={70}
+            height={70}
+            alt="Logo"
+          />
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
