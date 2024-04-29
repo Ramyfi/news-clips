@@ -25,8 +25,7 @@ First, run the following commands in the specified order :
 
 ```bash
 npm install - #to install all the dependencies for UI
-npm run setup - # to install all the dependencies for the server
-npm run dev - #to concurrently run the server and the UI
+npm run dev - #to install all the dependencies for the server and to concurrently run the server and the UI
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
