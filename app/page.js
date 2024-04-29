@@ -1,12 +1,17 @@
 "use client";
 
 import { Box, styled } from "@mui/material";
-import { Card, CardContent, Typography, Grid } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Grid,
+  CircularProgress,
+} from "@mui/material";
 import { useState, useEffect } from "react";
-import Header from "../components/header";
 
-const ContainerBox = styled(Box)(({ theme }) => ({
-  width: "59%",
+const Container = styled(Box)(({ theme }) => ({
+  width: "80%",
   margin: "110px auto 0 auto",
   [theme.breakpoints.down("md")]: {
     width: "75%",
@@ -16,12 +21,12 @@ const ContainerBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Component = styled(Card)`
+const Article = styled(Card)`
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
   margin-bottom: 20px;
 `;
 
-const Container = styled(CardContent)`
+const ArticleContent = styled(CardContent)`
   display: flex;
   padding: 8px;
   padding-bottom: 4px !important;
@@ -34,7 +39,7 @@ const Image = styled("img")({
   objectFit: "cover",
 });
 
-const RightContainer = styled(Grid)(({ theme }) => ({
+const ContectContainer = styled(Grid)(({ theme }) => ({
   margin: "5px 0px 0 -25px",
   display: "flex",
   flexDirection: "column",
@@ -48,7 +53,7 @@ const RightContainer = styled(Grid)(({ theme }) => ({
 
 const Title = styled(Typography)`
   font-weight: 300;
-  color: #44444d;
+  color: black;
   font-size: 22px;
   line-height: 27px;
 `;
@@ -59,8 +64,8 @@ const Author = styled(Typography)`
   line-height: 22px;
 `;
 
-const Description = styled(Typography)`
-  line-height: 22px;
+const Summary = styled(Typography)`
+  line-height: 20px;
   color: #44444d;
   margin-top: 5px;
   font-family: "Roboto", sans-serif;
@@ -72,7 +77,7 @@ const Short = styled("b")({
   fontFamily: "'Convergence', sans-serif",
 });
 
-const Publisher = styled(Typography)`
+const ReadMore = styled(Typography)`
   font-size: 12px;
   margin-top: auto;
   margin-bottom: 10px;
@@ -83,6 +88,19 @@ const Publisher = styled(Typography)`
   }
 `;
 
+const Loading = styled(CircularProgress)`
+  position: fixed;
+  left: 50%;
+  top: 50%;
+`;
+
+const LoadingArticles = styled(Typography)`
+  font-size: 30px;
+  position: absolute;
+  top: 56%;
+  left: 48%;
+  font-family: "sans-serif";
+`;
 
 export async function getSummary() {
   const response = await fetch("http://127.0.0.1:5328/api/summary");
@@ -95,7 +113,6 @@ export default function Home() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    
     setTimeout(async () => {
       const data = await getSummary();
       setArticleData(data);
@@ -103,45 +120,48 @@ export default function Home() {
     }, 1000);
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <LoadingArticles>
+        <Loading color="inherit" />
+        Loading...
+      </LoadingArticles>
+    );
   if (!articleData) return <p>Article Not Available</p>;
 
   return (
     <Box>
-      <Header />
-      <ContainerBox>
+      <Container>
         {articleData.articles.map((article) => (
-          <Component key={article.title}>
-            <Container>
-              <Grid container>
+          <Article key={article.title}>
+            <ArticleContent>
+              <Grid container spacing={1}>
                 <Grid lg={4} md={4} sm={4} xs={12} item>
                   <Image src={article.urlToImage} />
                 </Grid>
 
-                <RightContainer lg={8} md={8} sm={8} xs={12} item>
+                <ContectContainer lg={8} md={8} sm={8} xs={12} item>
                   <Title>{article.title}</Title>
                   <Author>
-                    <Short>news clip</Short> by {article.author}, Date:{" "}
+                    <Short>news clip</Short> by {article.author}, Published at:{" "}
                     {article.publishedAt}
                   </Author>
-                  <Description>{article.summary}</Description>
-                  <Publisher>
+                  <Summary>{article.summary}</Summary>
+                  <ReadMore>
                     read more at{" "}
                     <a href={article.url} target="_blank">
                       {article.url}
                     </a>
-                  </Publisher>
-                </RightContainer>
+                  </ReadMore>
+                </ContectContainer>
               </Grid>
-            </Container>
-          </Component>
+            </ArticleContent>
+          </Article>
         ))}
-      </ContainerBox>
+      </Container>
     </Box>
   );
 }
-
-
 
 //   /*
 //   {
