@@ -108,7 +108,7 @@ const LoadingArticles = styled(Typography)`
 `;
 
 export async function getSummary() { // To fetch the modified response with summarized articles in json() format
-  const response = await fetch("http://127.0.0.1:5328/api/summary");
+  const response = await fetch("http://https://backendfornewsclips.onrender.com/api/summary");
   const data = await response.json();
   return data;
 }
