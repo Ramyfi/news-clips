@@ -1,6 +1,0 @@
-numpy==1.24.3
-Flask==2.2.2
-flask_cors
-requests
-sumy
-lxml_html_clean
