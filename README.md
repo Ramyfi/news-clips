@@ -12,11 +12,13 @@ In the words of William Shakespeare - "Brevity is the soul of Wit".
 
 This is a hybrid Next.js + Python app that uses Next.js as the frontend and Flask as the API backend. One great use case of this is that to write Next.js apps that use Python AI libraries on the backend. We integrated an open source python AI library called "Sumy", to summarize the news content. 
 
-The Python/Flask server is mapped into to Next.js app under /api/.
+The Python/Flask server is mapped into to Next.js app under /api/ - in dev
 
-This is implemented using next.config.js rewrites to map any request to /api/:path* to the Flask API, which is hosted in the /api folder.
+This is implemented using next.config.js rewrites to map any request to /api/:path* to the Flask API, which is hosted in the /api folder. - in dev
 
-On localhost, the rewrite will be made to the 127.0.0.1:5328 port, which is where the Flask server is running.
+On localhost, the rewrite will be made to the 127.0.0.1:5328 port, which is where the Flask server is running. - in dev
+
+In production, we deployed the backend sepertely on Render at https://backendfornewsclips.onrender.com/
 
 ## Getting Started
 
